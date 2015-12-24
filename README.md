@@ -22,6 +22,9 @@ func ServerHTTP(w http.ResponseWriter, r *http.Request) {
         //
         // Note that a "Last-Modified" header will automagically have been added
         // to the 'w' parameter in this func.
+        //
+        // But this inner-func will only be call if a conditional GET did not
+        // get responded to with a "304 Not Modified" HTTP response.
 
     }))
 
