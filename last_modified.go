@@ -3,6 +3,7 @@ package modhandler
 
 import (
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -34,7 +35,7 @@ func LastModified(modtime time.Time, subhandler http.Handler) http.Handler {
 		// at this point, and will not continue with the rest of
 		// the code.)
 		ifModifiedSinceHeaderValue := r.Header.Get(ifModifiedSinceHeaderName)
-		if "" != ifModifiedSinceHeaderValue && lastModifiedHeaderValue == ifModifiedSinceHeaderValue {
+		if "GET" == strings.ToUpper(r.Method) && "" != ifModifiedSinceHeaderValue && lastModifiedHeaderValue == ifModifiedSinceHeaderValue {
 
 			headers := w.Header()
 			headers.Del("Content-Length")
